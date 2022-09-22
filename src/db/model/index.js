@@ -1,36 +1,36 @@
 /**
  * @description 数据模型入口文件
- * @author 阿白
+ * @author 阿凡
  */
 
-const User = require('./User')
-const Blog = require('./Blog')
-const UserRelation = require('./UserRelation')
-const AtRelation = require('./AtRelation')
+const User = require('./User');
+const Blog = require('./Blog');
+const UserRelation = require('./UserRelation');
+const AtRelation = require('./AtRelation');
 
 Blog.belongsTo(User, {
-    foreignKey: 'userId'
-})
+  foreignKey: 'userId',
+});
 
 UserRelation.belongsTo(User, {
-    foreignKey: 'followerId'
-})
+  foreignKey: 'followerId',
+});
 User.hasMany(UserRelation, {
-    foreignKey: 'userId'
-})
+  foreignKey: 'userId',
+});
 
 Blog.belongsTo(UserRelation, {
-    foreignKey: 'userId',
-    targetKey: 'followerId'
-})
+  foreignKey: 'userId',
+  targetKey: 'followerId',
+});
 
 Blog.hasMany(AtRelation, {
-    foreignKey: 'blogId',
-})
+  foreignKey: 'blogId',
+});
 
 module.exports = {
-    User,
-    Blog,
-    UserRelation,
-    AtRelation
-}   
+  User,
+  Blog,
+  UserRelation,
+  AtRelation,
+};
